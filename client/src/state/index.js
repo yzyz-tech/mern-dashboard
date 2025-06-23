@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // 初始状态
 const initialState ={ 
-  mode: "dart" 
+  mode: "dark" 
 };
 
 // 全局状态
