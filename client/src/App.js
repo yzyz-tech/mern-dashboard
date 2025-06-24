@@ -8,8 +8,8 @@ import Layout from "scenes/layout";
 import Dashboard from "scenes/dashboard";
 
 function App() {
-  const mode = useSelector((state) => state.global.mode);
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const mode = useSelector((state) => state.global.mode); // 从Redux获取全局mode状态
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);  // 根据mode动态生成MUI的主题，useMemo避免重复生成
   return (
     <div className="app">
       <BrowserRouter>
