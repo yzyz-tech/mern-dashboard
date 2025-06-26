@@ -1,6 +1,6 @@
-import { useTheme } from "@emotion/react";
 import {
   Box,
+  Divider,
   Drawer,
   IconButton,
   List,
@@ -9,6 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
+  useTheme,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -25,10 +26,12 @@ import {
   PointOfSaleOutlined,
   PublicOutlined,
   ReceiptLongOutlined,
+  SettingsOutlined,
   ShoppingCartOutlined,
   TodayOutlined,
   TrendingUpOutlined,
 } from "@mui/icons-material";
+import profileImage from "assets/profile.jpg";
 
 // 侧边栏导航项配置
 const navItems = [
@@ -91,13 +94,14 @@ const navItems = [
 ];
 
 const Sidebar = ({
+  user,
   drawerWidth,
   isSidebarOpen,
   setIsSidebarOpen,
   isNonMobile,
 }) => {
   const { pathname } = useLocation(); // 获取当前路由路径
-  const [active, setActive] = useState(""); // 确定当前所在页面
+  const [active, setActive] = useState(""); // 确定当前所在页面（当前高亮项）
   const navigate = useNavigate(); // 路由跳转
   const theme = useTheme();
 
@@ -148,7 +152,7 @@ const Sidebar = ({
               </FlexBetween>
             </Box>
 
-            {/* 菜单导航 */}
+            {/* 菜单项列表 */}
             <List>
               {navItems.map(({ text, icon }) => {
                 // 小节标题
@@ -202,6 +206,45 @@ const Sidebar = ({
                 );
               })}
             </List>
+          </Box>
+
+          {/* 底部用户信息 */}
+          <Box position="absolute" bottom="2rem">
+            <Divider /> {/* MUI组件分隔线 */}
+            <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
+              {/* 头像 */}
+              <Box
+                component="img"
+                alt="profile"
+                src={profileImage}
+                height="40px"
+                width="40px"
+                borderRadius="50%"
+                sx={{ objectFit: "cover" }}
+              />
+
+              {/* 用户信息 */}
+              <Box textAlign="left">
+                <Typography
+                  fontWeight="bold"
+                  fontSize="0.9rem"
+                  sx={{ color: theme.palette.secondary[100] }}
+                >
+                  {user.name}
+                </Typography>
+                <Typography
+                  fontSize="0.8rem"
+                  sx={{ color: theme.palette.secondary[200] }}
+                >
+                  {user.occupation}
+                </Typography>
+              </Box>
+
+              {/* 设置图标 */}
+              <SettingsOutlined
+                sx={{ color: theme.palette.secondary[300], fontsize: "25px" }}
+              />
+            </FlexBetween>
           </Box>
         </Drawer>
       )}
