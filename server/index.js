@@ -14,7 +14,9 @@ import salesRoutes from "./routes/sales.js";
 
 // 导入数据
 import User from "./models/User.js";
-import { dataUser } from "./data/index.js";
+import Product from "./models/Product.js";
+import ProductStat from "./models/ProductStat.js";
+import { dataUser, dataProduct, dataProductStat } from "./data/index.js";
 
 /* 配置 */
 dotenv.config(); // 读取.env文件的变量
@@ -49,6 +51,8 @@ mongoose
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
     // 仅添加一次数据（开发测试用）
+    // Product.insertMany(dataProduct);
+    // ProductStat.insertMany(dataProductStat);
     // User.insertMany(dataUser);
   })
   // 数据库连接失败

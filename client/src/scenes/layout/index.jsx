@@ -7,7 +7,7 @@ import Sidebar from "components/Sidebar";
 import { useGetUserQuery } from "state/api"; // 引入RTK Query的API调用hook
 
 const Layout = () => {
-  const isNonMobile = useMediaQuery("(min-width:600px)"); // 判断是否为非移动端设备
+  const isNonMobile = useMediaQuery("(min-width:600px)"); // 使用媒体查询判断是否为非移动端设备
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const userId = useSelector((state) => state.global.userId); // 从 Redux toolkit 获取
   const { data } = useGetUserQuery(userId);
